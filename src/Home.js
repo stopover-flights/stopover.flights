@@ -1,4 +1,4 @@
-import  React, { useState, useEffect }  from 'react';
+import  React, { useState, useEffect, View }  from 'react';
 import TopImage from "./images/main_image.jpg";
 import {
     AppBar,
@@ -15,6 +15,7 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { maxHeight } from '@mui/system';
 
  
 
@@ -25,15 +26,22 @@ function Home() {
   const [departureDate, setDepartureDate] = useState(null);
   const [arrivalDate, setArrivalDate] = useState(null);
 
-    return (
-      <div className="Home" style={{display:"flex", "flex-direction":"column"}}>
-        <AppBar position="sticky">
+    /*
+    <AppBar position="sticky">
             <Toolbar>Stopover.Flights</Toolbar>
         </AppBar>
-        <div class="container" style={{width:"100%"}}>
-          <img src={TopImage} alt="Logo" style={{width:"auto", "max-width":"100%",'object-fit':'cover'}}/>
-          <div class="top-left">Centered</div>
-        </div>
+    */
+    return (
+      <div className="Home" style={{display:"flex", "flex-direction":"column"}}>
+        <Box style={{background:"#000000"}}>
+          <img src={TopImage} alt="Logo" style={{width:"100%", "max-width":"100%",'object-fit':'cover', height:"auto", maxHeight:"30%"}}/>
+          <p style={{"position": "absolute",
+            "top": "8%",
+            "left": "50%",
+            "transform": "translate(-50%, -50%)",
+            "font-size":"25px"
+          }}><b>Stopover.flights - Experience Multiple destinations, one ticket</b></p>
+        </Box>
         <div style={{display:"flex", "justify-content": "center", "padding-top":"30px"}}>
           <TextField
             label="Where from?"
@@ -45,6 +53,7 @@ function Home() {
           <TextField 
             label="Where to?"
             variant="outlined"
+            style={{"padding-right":"50px"}}
           />
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DesktopDatePicker
@@ -53,6 +62,7 @@ function Home() {
               value={departureDate}
               onChange={(date)=>{}}
               renderInput={(params) => <TextField {...params} />}
+              style={{"padding-end":"20px"}}
             />
             <DesktopDatePicker
               label="Return date"
@@ -67,6 +77,7 @@ function Home() {
           <TextField
             label="Your email."
             variant="outlined"
+            style={{"padding-right":"10px", width:"400px"}}
           />
           <Button variant="contained" startIcon={<SearchIcon />}>
             Where can I stop over?
