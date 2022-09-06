@@ -1,0 +1,23 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-stopoverflights-dev-191800-authRole",
+            "UnauthRoleArn": "arn:aws:iam::112934433488:role/amplify-stopoverflights-dev-191800-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::112934433488:role/amplify-stopoverflights-dev-191800-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-stopoverflights-dev-191800-deployment",
+            "UnauthRoleName": "amplify-stopoverflights-dev-191800-unauthRole",
+            "StackName": "amplify-stopoverflights-dev-191800",
+            "StackId": "arn:aws:cloudformation:us-east-1:112934433488:stack/amplify-stopoverflights-dev-191800/edd9d200-2993-11ed-9b23-0ab8da6eeaf7",
+            "AmplifyAppId": "d3vncrj5wtnyqu"
+        },
+        "categories": {
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d3vncrj5wtnyqu",
+                    "type": "cicd"
+                }
+            }
+        }
+    }
+}
