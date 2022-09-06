@@ -1,5 +1,6 @@
 {
   "AppSyncApiName": "stopoverflights",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2022-09-02T19:15:16.200Z"
 }

@@ -16,8 +16,9 @@ import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { maxHeight } from '@mui/system';
-
- 
+import { API, graphqlOperation } from 'aws-amplify';
+import { createSearchEntry } from './graphql/mutations';
+import { ConsoleLogger } from '@aws-amplify/core';
 
 function Home() {
   
@@ -25,61 +26,93 @@ function Home() {
   const [arrival, setArrival] = useState("");  
   const [departureDate, setDepartureDate] = useState(null);
   const [arrivalDate, setArrivalDate] = useState(null);
+  const [email, setEmail] = useState("");
+
 
     /*
     <AppBar position="sticky">
             <Toolbar>Stopover.Flights</Toolbar>
         </AppBar>
     */
+   const submit = async function(){
+    console.log({currentTime: new Date().toISOString(),
+      departureLocation: departure,
+      arrivalLocation: arrival,
+      departureDate: departureDate.toISOString().substring(0, 10),
+      returnDate: arrivalDate.toISOString().substring(0, 10),
+      oneWay: false,
+      email: email});
+    await API.graphql(graphqlOperation(createSearchEntry, {input: {
+      currentTime: new Date().toISOString(),
+      departureLocation: departure,
+      arrivalLocation: arrival,
+      departureDate: departureDate.toISOString().substring(0, 10),
+      returnDate: arrivalDate.toISOString().substring(0, 10),
+      oneWay: false,
+      email: email
+    }}));
+   }
+
+    const swapDestinations = function(){
+      console.log(arrival)
+      let temp = arrival;
+      setArrival(departure)
+      setDeparture(temp)
+    }
     return (
-      <div className="Home" style={{display:"flex", "flex-direction":"column"}}>
+      <div className="Home" style={{display:"flex", "flexDirection":"column"}}>
         <Box style={{background:"#000000"}}>
-          <img src={TopImage} alt="Logo" style={{width:"100%", "max-width":"100%",'object-fit':'cover', height:"auto", maxHeight:"30%"}}/>
+          <img src={TopImage} alt="Logo" style={{width:"100%", maxWidth:"100%",objectFit:'cover', height:"auto", maxHeight:"30%"}}/>
           <p style={{"position": "absolute",
             "top": "8%",
             "left": "50%",
             "transform": "translate(-50%, -50%)",
-            "font-size":"25px"
+            fontSize:"25px"
           }}><b>Stopover.flights - Experience Multiple destinations, one ticket</b></p>
         </Box>
-        <div style={{display:"flex", "justify-content": "center", "padding-top":"30px"}}>
+        <div style={{display:"flex", "justifyContent": "center", "paddingTop":"30px"}}>
           <TextField
             label="Where from?"
             variant="outlined"
+            value={departure}
+            onChange={(s)=>setDeparture(s.target.value)}
           />
-          <IconButton>
+          <IconButton onClick={swapDestinations}>
             <AutorenewIcon />
           </IconButton>
           <TextField 
             label="Where to?"
             variant="outlined"
-            style={{"padding-right":"50px"}}
+            value={arrival}
+            onChange={(s)=>setArrival(s.target.value)}
+            style={{"paddingRight":"50px"}}
           />
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DesktopDatePicker
               label="Departure date"
               inputFormat="MM/DD/YYYY"
               value={departureDate}
-              onChange={(date)=>{}}
+              onChange={(date)=>setDepartureDate(date)}
               renderInput={(params) => <TextField {...params} />}
-              style={{"padding-end":"20px"}}
+              style={{"paddingLeft":"20px"}}
             />
             <DesktopDatePicker
               label="Return date"
               inputFormat="MM/DD/YYYY"
               value={arrivalDate}
-              onChange={(date)=>{}}
+              onChange={(date)=>setArrivalDate(date)}
               renderInput={(params) => <TextField {...params} />}
             />
         </LocalizationProvider>
         </div>
-        <div style={{display:"flex", "justify-content": "center", "padding-top":"30px"}}>
+        <div style={{display:"flex", "justifyContent": "center", "paddingTop":"30px"}}>
           <TextField
             label="Your email."
             variant="outlined"
-            style={{"padding-right":"10px", width:"400px"}}
+            onChange={(s)=>setEmail(s.target.value)}
+            style={{"paddingRight":"10px", width:"400px"}}
           />
-          <Button variant="contained" startIcon={<SearchIcon />}>
+          <Button variant="contained" startIcon={<SearchIcon />} onClick={submit}>
             Where can I stop over?
           </Button>
         </div>

@@ -1,12 +1,12 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTodo = /* GraphQL */ `
-  mutation CreateTodo(
-    $input: CreateTodoInput!
-    $condition: ModelTodoConditionInput
+export const createSearchEntry = /* GraphQL */ `
+  mutation CreateSearchEntry(
+    $input: CreateSearchEntryInput!
+    $condition: ModelSearchEntryConditionInput
   ) {
-    createTodo(input: $input, condition: $condition) {
+    createSearchEntry(input: $input, condition: $condition) {
       id
       currentTime
       departureLocation
@@ -20,12 +20,12 @@ export const createTodo = /* GraphQL */ `
     }
   }
 `;
-export const updateTodo = /* GraphQL */ `
-  mutation UpdateTodo(
-    $input: UpdateTodoInput!
-    $condition: ModelTodoConditionInput
+export const updateSearchEntry = /* GraphQL */ `
+  mutation UpdateSearchEntry(
+    $input: UpdateSearchEntryInput!
+    $condition: ModelSearchEntryConditionInput
   ) {
-    updateTodo(input: $input, condition: $condition) {
+    updateSearchEntry(input: $input, condition: $condition) {
       id
       currentTime
       departureLocation
@@ -39,12 +39,12 @@ export const updateTodo = /* GraphQL */ `
     }
   }
 `;
-export const deleteTodo = /* GraphQL */ `
-  mutation DeleteTodo(
-    $input: DeleteTodoInput!
-    $condition: ModelTodoConditionInput
+export const deleteSearchEntry = /* GraphQL */ `
+  mutation DeleteSearchEntry(
+    $input: DeleteSearchEntryInput!
+    $condition: ModelSearchEntryConditionInput
   ) {
-    deleteTodo(input: $input, condition: $condition) {
+    deleteSearchEntry(input: $input, condition: $condition) {
       id
       currentTime
       departureLocation
