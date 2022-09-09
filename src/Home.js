@@ -98,17 +98,20 @@ function Home() {
       setArrival(departure)
       setDeparture(temp)
     }
-
+    //TODO: media queries
+    //TODO: bootstrap
+    //<img src={TopImage} alt="Logo" style={{width:"100%", maxWidth:"100%",objectFit:'cover', height:"auto", maxHeight:"30%"}}/>
     return (
       <div className="Home" style={{display:"flex", "flexDirection":"column"}}>
         <Box >
-          <img src={TopImage} alt="Logo" style={{width:"100%", maxWidth:"100%",objectFit:'cover', height:"auto", maxHeight:"30%"}}/>
+          <img src={TopImage} alt="Logo" style={{minWidth:"100%", maxWidth:"100%",objectFit:'cover', height:"auto", maxHeight:"30%", minHeight:"25%"}}/>
           <p style={{"position": "absolute",
             "top": "8%",
             "left": "50%",
             "transform": "translate(-50%, -50%)",
-            fontSize:"25px"
-          }}><b>Stopover.flights - Experience Multiple destinations, one ticket</b></p>
+            fontSize:"25px",
+            color:"#ffffff"
+          }}><b>Stopover.flights<br/>Experience Multiple destinations, one ticket</b></p>
         </Box>
         <div style={{display:"flex", "justifyContent": "center", "paddingTop":"30px"}}>
           <TextField
@@ -163,6 +166,6 @@ function Home() {
         </div>
       </div>
     );
-  }
+  }//8 12 5
   
   export default Home;
