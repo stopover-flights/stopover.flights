@@ -104,7 +104,7 @@ function Home() {
     //TODO: bootstrap
     //<img src={TopImage} alt="Logo" style={{width:"100%", maxWidth:"100%",objectFit:'cover', height:"auto", maxHeight:"30%"}}/>
     return (
-      <div>
+      <div style={{justifyContent:"center", height:"100%"}}>
         <div className="Home">
           <Box >
             <img src={TopImage} alt="Logo" className="DisplayImage"/>

@@ -1,8 +1,11 @@
 .Home{
     display:flex; 
+    text-align: center;
+    min-height: 100%;
     flex-direction:column;
-    justify-content: center;
-    max-width: 1000px; 
+    justify-content: start;
+    max-width: 1300px; 
+    background-color: #F5F5F5;
 }
 
 .DisplayImage{
@@ -27,6 +30,7 @@
     display:flex;
     justify-content: center;
     padding-top:30px;
+    max-width: 1300px;
 }
 
 .ItemPadding{
