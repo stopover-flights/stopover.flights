@@ -25,5 +25,22 @@
       "type": "cicd",
       "lastPushTimeStamp": "2022-09-06T16:44:21.463Z"
     }
+  },
+  "function": {
+    "SendEmailOnDBAdd": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "stopoverflights",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ]
+        }
+      ]
+    }
   }
 }
