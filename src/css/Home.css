@@ -1,0 +1,43 @@
+.Home{
+    display:flex; 
+    text-align: center;
+    min-height: 100%;
+    flex-direction:column;
+    justify-content: start;
+    max-width: 1300px; 
+    background-color: #F5F5F5;
+}
+
+.DisplayImage{
+    min-width: 100%; 
+    max-width:100%;
+    object-fit:cover;
+    height:auto;
+    max-height:30%;
+    min-height:25%;
+}
+
+.Heading{
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size:25px;
+    color:#ffffff;
+}
+
+.Items{
+    display:flex;
+    justify-content: center;
+    padding-top:30px;
+    max-width: 1300px;
+}
+
+.ItemPadding{
+    padding-right:50px;
+}
+
+.EmailInput{
+    padding-right:10px;
+    width:400px;
+}
