@@ -18,15 +18,15 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { maxHeight } from '@mui/system';
 import { API, graphqlOperation } from 'aws-amplify';
 import { createSearchEntry } from './graphql/mutations';
-import { ConsoleLogger } from '@aws-amplify/core';
+import './css/Home.css'
 
 function Home() {
   
-  const [departure, setDeparture] = useState("");
-  const [arrival, setArrival] = useState("");  
-  const [departureDate, setDepartureDate] = useState(null);
-  const [arrivalDate, setArrivalDate] = useState(null);
-  const [email, setEmail] = useState("");
+  const [departure, setDeparture] = useState("Test");
+  const [arrival, setArrival] = useState("Test");  
+  const [departureDate, setDepartureDate] = useState(new Date());
+  const [arrivalDate, setArrivalDate] = useState(new Date());
+  const [email, setEmail] = useState("email@g.c");
 
   const [validateDept, setDeptValidation] = useState(false)
   const [validateArrival, setArrivalValidation] = useState(false)
@@ -75,7 +75,7 @@ function Home() {
         returnDate: arrivalDate.toISOString().substring(0, 10),
         oneWay: false,
         email: email});
-      await API.graphql(graphqlOperation(createSearchEntry, {input: {
+      const create = await API.graphql(graphqlOperation(createSearchEntry, {input: {
         currentTime: new Date().toISOString(),
         departureLocation: departure,
         arrivalLocation: arrival,
@@ -84,6 +84,8 @@ function Home() {
         oneWay: false,
         email: email
       }}));
+
+      console.log(create.response);
 
       setDeparture("")
       setArrival ("")
@@ -102,67 +104,64 @@ function Home() {
     //TODO: bootstrap
     //<img src={TopImage} alt="Logo" style={{width:"100%", maxWidth:"100%",objectFit:'cover', height:"auto", maxHeight:"30%"}}/>
     return (
-      <div className="Home" style={{display:"flex", "flexDirection":"column"}}>
-        <Box >
-          <img src={TopImage} alt="Logo" style={{minWidth:"100%", maxWidth:"100%",objectFit:'cover', height:"auto", maxHeight:"30%", minHeight:"25%"}}/>
-          <p style={{"position": "absolute",
-            "top": "8%",
-            "left": "50%",
-            "transform": "translate(-50%, -50%)",
-            fontSize:"25px",
-            color:"#ffffff"
-          }}><b>Stopover.flights<br/>Experience Multiple destinations, one ticket</b></p>
-        </Box>
-        <div style={{display:"flex", "justifyContent": "center", "paddingTop":"30px"}}>
-          <TextField
-            error={validateDept}
-            label="Where from?"
-            variant="outlined"
-            value={departure}
-            onChange={(s)=>setDeparture(s.target.value)}
-          />
-          <IconButton onClick={swapDestinations}>
-            <AutorenewIcon />
-          </IconButton>
-          <TextField 
-            error={validateArrival}
-            label="Where to?"
-            variant="outlined"
-            value={arrival}
-            onChange={(s)=>setArrival(s.target.value)}
-            style={{"paddingRight":"50px"}}
-          />
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DesktopDatePicker
-              //error={validateDeptDate}
-              label="Departure date"
-              inputFormat="MM/DD/YYYY"
-              value={departureDate}
-              onChange={(date)=>setDepartureDate(date)}
-              renderInput={(params) => <TextField {...params} error={validateDeptDate}/>}
-              style={{"paddingLeft":"20px"}}
+      <div>
+        <div className="Home">
+          <Box >
+            <img src={TopImage} alt="Logo" className="DisplayImage"/>
+            <p className='Heading'><b>Stopover.flights<br/>Experience Multiple destinations, one ticket</b></p>
+          </Box>
+          <div className='Items'>
+            <TextField
+              error={validateDept}
+              label="Where from?"
+              variant="outlined"
+              value={departure}
+              onChange={(s)=>setDeparture(s.target.value)}
             />
-            <DesktopDatePicker
-              error={validatearrivalDate}
-              label="Return date"
-              inputFormat="MM/DD/YYYY"
-              value={arrivalDate}
-              onChange={(date)=>setArrivalDate(date)}
-              renderInput={(params) => <TextField {...params} error={validatearrivalDate}/>}
+            <IconButton onClick={swapDestinations}>
+              <AutorenewIcon />
+            </IconButton>
+            <TextField 
+              error={validateArrival}
+              label="Where to?"
+              variant="outlined"
+              value={arrival}
+              onChange={(s)=>setArrival(s.target.value)}
+              style={{"paddingRight":"50px"}}
             />
-        </LocalizationProvider>
-        </div>
-        <div style={{display:"flex", "justifyContent": "center", "paddingTop":"30px"}}>
-          <TextField
-            error={validateEmail}
-            label="Your email."
-            variant="outlined"
-            onChange={(s)=>{setEmail(s.target.value); }}
-            style={{"paddingRight":"10px", width:"400px"}}
-          />
-          <Button variant="contained" startIcon={<SearchIcon />} onClick={submit}>
-            Where can I stop over?
-          </Button>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DesktopDatePicker
+                //error={validateDeptDate}
+                label="Departure date"
+                inputFormat="MM/DD/YYYY"
+                value={departureDate}
+                onChange={(date)=>setDepartureDate(date)}
+                renderInput={(params) => <TextField {...params} error={validateDeptDate}/>}
+                style={{"paddingLeft":"20px"}}
+              />
+              <DesktopDatePicker
+                error={validatearrivalDate}
+                label="Return date"
+                inputFormat="MM/DD/YYYY"
+                value={arrivalDate}
+                onChange={(date)=>setArrivalDate(date)}
+                renderInput={(params) => <TextField {...params} error={validatearrivalDate}/>}
+              />
+          </LocalizationProvider>
+          </div>
+          <div style={{display:"flex", "justifyContent": "center", "paddingTop":"30px"}}>
+            <TextField
+              error={validateEmail}
+              label="Your email."
+              variant="outlined"
+              value={email}
+              onChange={(s)=>{setEmail(s.target.value); }}
+              className="EmailInput"
+            />
+            <Button variant="contained" startIcon={<SearchIcon />} onClick={submit}>
+              Where can I stop over?
+            </Button>
+          </div>
         </div>
       </div>
     );
