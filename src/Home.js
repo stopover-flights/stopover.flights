@@ -18,15 +18,15 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { maxHeight } from '@mui/system';
 import { API, graphqlOperation } from 'aws-amplify';
 import { createSearchEntry } from './graphql/mutations';
-import './css/Home.css'
+import { ConsoleLogger } from '@aws-amplify/core';
 
 function Home() {
   
-  const [departure, setDeparture] = useState("Test");
-  const [arrival, setArrival] = useState("Test");  
-  const [departureDate, setDepartureDate] = useState(new Date());
-  const [arrivalDate, setArrivalDate] = useState(new Date());
-  const [email, setEmail] = useState("email@g.c");
+  const [departure, setDeparture] = useState("");
+  const [arrival, setArrival] = useState("");  
+  const [departureDate, setDepartureDate] = useState(null);
+  const [arrivalDate, setArrivalDate] = useState(null);
+  const [email, setEmail] = useState("");
 
   const [validateDept, setDeptValidation] = useState(false)
   const [validateArrival, setArrivalValidation] = useState(false)
@@ -75,7 +75,7 @@ function Home() {
         returnDate: arrivalDate.toISOString().substring(0, 10),
         oneWay: false,
         email: email});
-      const create = await API.graphql(graphqlOperation(createSearchEntry, {input: {
+      await API.graphql(graphqlOperation(createSearchEntry, {input: {
         currentTime: new Date().toISOString(),
         departureLocation: departure,
         arrivalLocation: arrival,
@@ -84,8 +84,6 @@ function Home() {
         oneWay: false,
         email: email
       }}));
-
-      console.log(create.response);
 
       setDeparture("")
       setArrival ("")
@@ -100,11 +98,9 @@ function Home() {
       setArrival(departure)
       setDeparture(temp)
     }
-    //TODO: media queries
-    //TODO: bootstrap
-    //<img src={TopImage} alt="Logo" style={{width:"100%", maxWidth:"100%",objectFit:'cover', height:"auto", maxHeight:"30%"}}/>
+
     return (
-      <div style={{justifyContent:"center", height:"100%"}}>
+      <div>
         <div className="Home">
           <Box >
             <img src={TopImage} alt="Logo" className="DisplayImage"/>
@@ -165,6 +161,6 @@ function Home() {
         </div>
       </div>
     );
-  }//8 12 5
+  }
   
   export default Home;
