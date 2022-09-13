@@ -19,6 +19,7 @@ import { maxHeight } from '@mui/system';
 import { API, graphqlOperation } from 'aws-amplify';
 import { createSearchEntry } from './graphql/mutations';
 import { ConsoleLogger } from '@aws-amplify/core';
+import './css/Home.css'
 
 function Home() {
   
@@ -161,6 +162,7 @@ function Home() {
         </div>
       </div>
     );
+
   }
   
   export default Home;
