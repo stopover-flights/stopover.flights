@@ -7,7 +7,14 @@ import {
     Button,
     IconButton,
     Box,
-    InputLabel 
+    InputLabel,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentDialog,
+    DialogContentText,
+    ContentText,
+    DialogTitle,
 } from '@mui/material';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import SearchIcon from '@mui/icons-material/Search';
@@ -34,7 +41,15 @@ function Home() {
   const [validateDeptDate, setDeptDateValidation] = useState(false)
   const [validatearrivalDate, setArrivalDateValidation] = useState(false)
   const [validateEmail, setEmailValidation] = useState(false)
+  const [open, setOpen] = React.useState(false);
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
     /*
     <AppBar position="sticky">
@@ -86,6 +101,8 @@ function Home() {
         email: email
       }}));
 
+      handleClickOpen();
+
       setDeparture("")
       setArrival ("")
       setDepartureDate(null)
@@ -102,6 +119,21 @@ function Home() {
 
     return (
       <div>
+        <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Thank you for using our beta site. We will email you the results for your search as soon as possible.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Close</Button>
+        </DialogActions>
+      </Dialog>
         <div className="Home">
           <Box >
             <img src={TopImage} alt="Logo" className="DisplayImage"/>
@@ -124,7 +156,7 @@ function Home() {
               variant="outlined"
               value={arrival}
               onChange={(s)=>setArrival(s.target.value)}
-              style={{"paddingRight":"50px"}}
+              style={{paddingRight:"50px"}}
             />
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DesktopDatePicker
