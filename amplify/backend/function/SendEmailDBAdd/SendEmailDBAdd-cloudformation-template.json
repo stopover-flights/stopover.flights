@@ -180,7 +180,14 @@
                 "ses:SendEmail"
               ],
               "Effect": "Allow",
-              "Resource": "arn:aws:ses:us-east-1:112934433488:identity/carter.r.madsen@gmail.com"
+              "Resource": "arn:aws:ses:us-east-1:112934433488:identity/info@stopover.flights"
+            },
+            {
+              "Action": [
+                "ses:SendEmail"
+              ],
+              "Effect": "Allow",
+              "Resource": "arn:aws:ses:us-east-1:112934433488:identity/jc.westover11@gmail.com"
             }
           ]
         }

@@ -27,7 +27,7 @@
         "SendEmailDBAdd": {
           "sesEmail": "carter.r.madsen@gmail.com",
           "deploymentBucketName": "amplify-stopoverflights-dev-191800-deployment",
-          "s3Key": "amplify-builds/SendEmailDBAdd-38506f644d534d636365-build.zip"
+          "s3Key": "amplify-builds/SendEmailDBAdd-726c46694d2f74697454-build.zip"
         }
       }
     }

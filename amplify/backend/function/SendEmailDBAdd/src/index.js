@@ -14,13 +14,13 @@ exports.handler = async (event) => {
       await ses
           .sendEmail({
             Destination: {
-              ToAddresses: [process.env.SES_EMAIL],
+              ToAddresses: ["jc.westover11@gmail.com"],
             },
-            Source: process.env.SES_EMAIL,
+            Source: "info@stopover.flights",
             Message: {
               Subject: { Data: 'New Stopover Request' },
               Body: {
-                Text: { Data: `Departure Location: ${departureLocation}\nArrival Location: ${arrivalLocation} Departure Date: ${departureDate}\nReturn date: ${returnDate}\nEmail: ${candidateEmail}` },
+                Text: { Data: `Departure Location: ${departureLocation}\nArrival Location: ${arrivalLocation}\n Departure Date: ${departureDate}\nReturn date: ${returnDate}\nEmail: ${candidateEmail}` },
               },
             },
           })
