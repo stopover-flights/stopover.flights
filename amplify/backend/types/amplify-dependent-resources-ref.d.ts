@@ -7,7 +7,7 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "function": {
-        "SendEmailOnDBAdd": {
+        "SendEmailDBAdd": {
             "Name": "string",
             "Arn": "string",
             "Region": "string",

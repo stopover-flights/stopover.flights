@@ -58,12 +58,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "SendEmailOnDBAdd",
+            "SendEmailDBAdd",
             {
               "Fn::Join": [
                 "",
                 [
-                  "SendEmailOnDBAdd",
+                  "SendEmailDBAdd",
                   "-",
                   {
                     "Ref": "env"
@@ -103,12 +103,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "stopoverflightsLambdaRole4bbc45c9",
+            "stopoverflightsLambdaRolece305eb3",
             {
               "Fn::Join": [
                 "",
                 [
-                  "stopoverflightsLambdaRole4bbc45c9",
+                  "stopoverflightsLambdaRolece305eb3",
                   "-",
                   {
                     "Ref": "env"
@@ -180,7 +180,7 @@
                 "ses:SendEmail"
               ],
               "Effect": "Allow",
-              "Resource": "arn:aws:ses:us-east-1:112934433488:identity/jc.westover11@gmail.com"
+              "Resource": "arn:aws:ses:us-east-1:112934433488:identity/carter.r.madsen@gmail.com"
             }
           ]
         }
