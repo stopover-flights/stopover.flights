@@ -137,7 +137,7 @@ function Home() {
         <div className="Home">
           <Box >
             <img src={TopImage} alt="Logo" className="DisplayImage"/>
-            <p className='Heading'><b>Stopover.flights<br/>Experience Multiple destinations, one ticket</b></p>
+            <p className='Heading'><b>Stopover.flights<br/>Experience Multiple destinations, one booking</b></p>
           </Box>
           <div className='Items'>
             <TextField
