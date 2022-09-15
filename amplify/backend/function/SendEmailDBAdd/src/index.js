@@ -5,7 +5,10 @@ exports.handler = async (event) => {
   for (const streamedItem of event.Records) {
     if (streamedItem.eventName === 'INSERT') {
       //pull off items from stream
-      const candidateName = streamedItem.dynamodb.NewImage.departureLocation.S
+      const departureLocation = streamedItem.dynamodb.NewImage.departureLocation.S
+      const departureDate = streamedItem.dynamodb.NewImage.departureDate.S
+      const arrivalLocation = streamedItem.dynamodb.NewImage.arrivalLocation.S
+      const returnDate = streamedItem.dynamodb.NewImage.returnDate.S
       const candidateEmail = streamedItem.dynamodb.NewImage.email.S
 
       await ses
@@ -15,9 +18,9 @@ exports.handler = async (event) => {
             },
             Source: process.env.SES_EMAIL,
             Message: {
-              Subject: { Data: 'Candidate Submission' },
+              Subject: { Data: 'New Stopover Request' },
               Body: {
-                Text: { Data: `My name is ${candidateName}. You can reach me at ${candidateEmail}` },
+                Text: { Data: `Departure Location: ${departureLocation}\nArrival Location: ${arrivalLocation} Departure Date: ${departureDate}\nReturn date: ${returnDate}\nEmail: ${candidateEmail}` },
               },
             },
           })
