@@ -6,22 +6,21 @@ exports.handler = async (event) => {
     if (streamedItem.eventName === 'INSERT') {
       //pull off items from stream
       const departureLocation = streamedItem.dynamodb.NewImage.departureLocation.S
-      const destination = streamedItem.dynamodb.NewImage.arrivalLocation.S
       const departureDate = streamedItem.dynamodb.NewImage.departureDate.S
+      const arrivalLocation = streamedItem.dynamodb.NewImage.arrivalLocation.S
       const returnDate = streamedItem.dynamodb.NewImage.returnDate.S
-      const oneWay = streamedItem.dynamodb.NewImage.oneWay.S
-      const userEmail = streamedItem.dynamodb.NewImage.email.S
+      const candidateEmail = streamedItem.dynamodb.NewImage.email.S
 
       await ses
           .sendEmail({
             Destination: {
-              ToAddresses: [process.env.SES_EMAIL],
+              ToAddresses: ["jc.westover11@gmail.com"],
             },
-            Source: 'carter.r.madsen@gmail.com',
+            Source: "info@stopover.flights",
             Message: {
-              Subject: { Data: 'Candidate Submission' },
+              Subject: { Data: 'New Stopover Request' },
               Body: {
-                Text: { Data: `Start location: ${departureLocation}\nStart date: ${departureDate}\nDestination: ${destination}\nTrip End Date: ${returnDate}\nEmail: ${userEmail}` },
+                Text: { Data: `Departure Location: ${departureLocation}\nArrival Location: ${arrivalLocation}\n Departure Date: ${departureDate}\nReturn date: ${returnDate}\nEmail: ${candidateEmail}` },
               },
             },
           })
