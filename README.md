@@ -68,3 +68,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+##Developer Comments
+Welcome, friends! Some quick information about this project-
+-We've built the application on AWS, leveraging their Amplify platform. In its current form, the project is very basic- when users submit their Stopover Requests, we add their requests to a Database & send Josh an email with the relevant information so that he can gather the information & return it to them. The logic for sending that email is contained in amplify/backend/function/SendEmailDBAdd/index.js , and is triggered by anything being added to the DB!
