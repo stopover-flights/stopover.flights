@@ -39,7 +39,11 @@ function Home() {
   const [validateDeptDate, setDeptDateValidation] = useState(false)
   const [validatearrivalDate, setArrivalDateValidation] = useState(false)
   const [validateEmail, setEmailValidation] = useState(false)
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+
+  const [otherDatePicker, setOtherDatePicker] = useState();
+
+  let arriveBy = false;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -115,6 +119,27 @@ function Home() {
       setDeparture(temp)
     }
 
+    const addDatePicker = function(){
+      arriveBy=true;
+      setOtherDatePicker(
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DesktopDatePicker
+            //error={validateDeptDate}
+            label="Arrive By"
+            inputFormat="MM/DD/YYYY"
+            value={departureDate}
+            onChange={(date)=>setDepartureDate(date)}
+            renderInput={(params) => <TextField {...params} error={validateDeptDate} sx={{ mb: "10px"}}/>}
+          />
+        </LocalizationProvider>
+      );
+    }
+
+    const removeDatePicker = function(){
+      arriveBy=false;
+      setOtherDatePicker();
+    }
+
     return (
       <div>
         <Dialog
@@ -140,7 +165,7 @@ function Home() {
             <div className='locations'>
               <TextField
                 error={validateDept}
-                label="Where from?"
+                label="Home Airport?"
                 variant="outlined"
                 value={departure}
                 sx={{maxWidth:"auto"}}
@@ -152,12 +177,20 @@ function Home() {
               </IconButton>
               <TextField 
                 error={validateArrival}
-                label="Where to?"
+                label="Final Destination?"
                 variant="outlined"
                 value={arrival}
                 sx={{maxWidth:"auto"}}
                 onChange={(s)=>setArrival(s.target.value)}
                 />
+            </div>
+            <div style={{display:"flex", "flex-direction": "column", alignItems:"center"}}>
+              <p>Do you need to arrive in your final destination by a certain date?</p>
+              <div style={{display:"flex", "flex-direction": "row"}}>
+                  <Button onClick={addDatePicker}>Yes</Button>
+                  <Button onClick={removeDatePicker}>No</Button>
+              </div>
+              {otherDatePicker}
             </div>
             <div className='dates'>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
