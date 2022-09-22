@@ -1,4 +1,25 @@
 {
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-stopoverflights-prod-210301-authRole",
+      "UnauthRoleArn": "arn:aws:iam::112934433488:role/amplify-stopoverflights-prod-210301-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::112934433488:role/amplify-stopoverflights-prod-210301-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-stopoverflights-prod-210301-deployment",
+      "UnauthRoleName": "amplify-stopoverflights-prod-210301-unauthRole",
+      "StackName": "amplify-stopoverflights-prod-210301",
+      "StackId": "arn:aws:cloudformation:us-east-1:112934433488:stack/amplify-stopoverflights-prod-210301/4b67a7c0-2e27-11ed-9a98-0a4759798d09",
+      "AmplifyAppId": "d3vncrj5wtnyqu"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d3vncrj5wtnyqu",
+          "type": "cicd"
+        }
+      }
+    }
+  },
   "dev": {
     "awscloudformation": {
       "AuthRoleName": "amplify-stopoverflights-dev-191800-authRole",
